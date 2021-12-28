@@ -1,0 +1,50 @@
+@import url("../style/common/common.css");
+@import url("../style/components/button.css");
+@import url("../style/components/input.css");
+@import url("../style/components/pop-up.css");
+@import url("../style/components/table.css");
+@import url("../style/components/combobox.css");
+@import url("../style/components/toast-messenger.css");
+@import url("../style/layout/navbar.css");
+@import url("../style/layout/header.css");
+@import url("../style/layout/content.css");
+
+body {
+  font-family: Noto sans, Noto-sans-italic, Noto-sans-regular,
+    Noto-sans-semibold, sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-size: 13px;
+}
+
+.main {
+  display: flex;
+}
+
+.t-wrapper-page {
+  width: 100%;
+  height: 100vh;
+  box-sizing: border-box;
+  padding-left: var(--navbar-with);
+}
+
+@font-face {
+  font-family: Noto sans;
+  src: url("../assets/fonts/notosans-regular.2cb88a13.woff2");
+}
+
+@font-face {
+  font-family: Noto-sans-italic;
+  src: url("../assets/fonts/notosans-italic.1c1aaac9.woff2");
+}
+
+@font-face {
+  font-family: Noto-sans-regular;
+  src: url("../assets/fonts/notosans-bold.3ede5aff.woff2");
+}
+
+@font-face {
+  font-family: Noto-sans-semibold;
+  src: url("../assets/fonts/notosans-semibold.df3e6dc4.woff2");
+}
