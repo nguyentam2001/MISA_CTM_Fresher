@@ -1,306 +1,354 @@
 <template>
-  <div
-    id="showDialog"
-    class="show-dialog"
-    :class="{ isShowDialog: isShowDialog }"
-  >
-    <div class="m-dialog">
-      <div class="m-dialog-wrapper">
-        <div class="form-employee m-with-auto">
-          <div class="pop-up m-with-auto pop-up-form">
-            <div class="pop-up-top-left">
-              <button class="btn-top-left btn-question">
-                <i class="far fa-question-circle"></i>
-              </button>
-              <button
-                id="btnEscape"
-                @click="btnCancelEmployee"
-                class="btn-top-left btn-escape"
-              >
-                <i class="fas fa-times"></i>
-              </button>
-            </div>
-            <div class="pop-up-header">
-              <p class="pop-up-title">Thông tin nhân viên</p>
-              <div class="pop-up-checks">
-                <div class="pop-up-check"></div>
-                <p>Là khách hàng</p>
-                <div class="pop-up-check"></div>
-                <p>Là nhà cung cấp</p>
+  <div>
+    <div
+      id="showDialog"
+      class="show-dialog"
+      :class="{ isShowDialog: isShowDialog }"
+    >
+      <div class="m-dialog">
+        <div class="m-dialog-wrapper">
+          <div class="form-employee m-with-auto">
+            <div class="pop-up m-with-auto pop-up-form">
+              <div class="pop-up-top-left">
+                <button class="btn-top-left btn-question">
+                  <i class="far fa-question-circle"></i>
+                </button>
+                <button
+                  id="btnEscape"
+                  @click="btnCancelEmployee"
+                  class="btn-top-left btn-escape"
+                >
+                  <i class="fas fa-times"></i>
+                </button>
               </div>
-            </div>
-            <div class="pop-up-content m-with-auto">
-              <div class="m-row">
-                <div class="m-col-6">
-                  <div class="m-row">
-                    <div class="m-col-5 m-padding-right-8">
-                      <div class="input-wrapper">
-                        <p class="text">Mã *</p>
-                        <input
-                          type="text"
-                          class="t-input"
-                          ref="isFocus"
-                          placeholder="Nhập mã nhân viên"
-                          fieldname="EmployeeCode"
-                          v-model="employee.EmployeeCode"
-                          id="employeeCode"
-                        />
+              <div class="pop-up-header">
+                <p class="pop-up-title">Thông tin nhân viên</p>
+                <div class="pop-up-checks">
+                  <div class="pop-up-check"></div>
+                  <p>Là khách hàng</p>
+                  <div class="pop-up-check"></div>
+                  <p>Là nhà cung cấp</p>
+                </div>
+              </div>
+              <div class="pop-up-content m-with-auto">
+                <div class="m-row">
+                  <div class="m-col-6">
+                    <div class="m-row">
+                      <div class="m-col-5 m-padding-right-8">
+                        <div class="input-wrapper">
+                          <p class="text">Mã *</p>
+                          <input
+                            type="text"
+                            class="t-input"
+                            ref="isFocus"
+                            placeholder="Nhập mã nhân viên"
+                            fieldname="EmployeeCode"
+                            v-model="employee.EmployeeCode"
+                            id="employeeCode"
+                          />
+                        </div>
                       </div>
-                    </div>
-                    <div class="m-col-7 m-padding-right-8">
-                      <div class="input-wrapper">
-                        <p class="text">Tên *</p>
-                        <input
-                          type="text"
-                          class="t-input"
-                          placeholder="Nhập tên nhân viên"
-                          fieldname="EmployeeName"
-                          validate="FullName"
-                          v-model="employee.EmployeeName"
-                          id="FullName"
-                        />
-                        <div class="error-message">Tên không được để trống</div>
+                      <div class="m-col-7 m-padding-right-8">
+                        <div class="input-wrapper">
+                          <p class="text">Tên *</p>
+
+                          <input
+                            :class="{ isFullNameEmpty: isFullNameEmpty }"
+                            type="text"
+                            class="t-input"
+                            placeholder="Nhập tên nhân viên"
+                            fieldname="EmployeeName"
+                            validate="FullName"
+                            v-model="employee.EmployeeName"
+                            id="FullName"
+                          />
+
+                          <div class="error-message">
+                            Tên không được để trống
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-                <div class="m-col-6">
-                  <div class="m-row">
-                    <div class="m-col-5 m-padding-left-8">
-                      <div class="input-wrapper">
-                        <p class="text">Ngày sinh</p>
-                        <input
-                          type="date"
-                          class="t-input"
-                          fieldname="DateOfBirth"
-                          v-model="employee.DateOfBirth"
-                        />
+                  <div class="m-col-6">
+                    <div class="m-row">
+                      <div class="m-col-5 m-padding-left-8">
+                        <div class="input-wrapper">
+                          <p class="text">Ngày sinh</p>
+                          <input
+                            type="date"
+                            class="t-input"
+                            placeholder="DD/MM/YYYY"
+                            fieldname="DateOfBirth"
+                            v-model="employee.DateOfBirth"
+                          />
+                        </div>
                       </div>
-                    </div>
-                    <div class="m-col-7 m-padding-left-8">
-                      <div class="t-row">
-                        <p class="text">Giới tính</p>
+                      <div class="m-col-7 m-padding-left-8">
+                        <div class="t-row">
+                          <p class="text">Giới tính</p>
 
-                        <div class="input-radio-wrapper">
-                          <label for="male">
-                            <input
-                              type="radio"
-                              name="Gender"
-                              value="1"
-                              id="male"
-                              checked=""
-                              v-model="employee.Gender"
-                            />
-                            Nam
-                          </label>
-                          <label for="female">
-                            <input
-                              type="radio"
-                              name="Gender"
-                              value="0"
-                              id="female"
-                              v-model="employee.Gender"
-                            />
-                            Nữ</label
-                          >
-                          <label for="other">
-                            <input
-                              type="radio"
-                              name="Gender"
-                              value="2"
-                              id="other"
-                              v-model="employee.Gender"
-                            />
-                            Khác
-                          </label>
+                          <div class="input-radio-wrapper">
+                            <label for="male">
+                              <input
+                                type="radio"
+                                name="Gender"
+                                value="1"
+                                id="male"
+                                checked=""
+                                v-model="employee.Gender"
+                              />
+                              Nam
+                            </label>
+                            <label for="female">
+                              <input
+                                type="radio"
+                                name="Gender"
+                                value="0"
+                                id="female"
+                                v-model="employee.Gender"
+                              />
+                              Nữ</label
+                            >
+                            <label for="other">
+                              <input
+                                type="radio"
+                                name="Gender"
+                                value="2"
+                                id="other"
+                                v-model="employee.Gender"
+                              />
+                              Khác
+                            </label>
+                          </div>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>
-              <div class="m-row m-margin-top-16">
-                <div class="m-col-6 m-padding-right-8">
-                  <div class="t-row">
-                    <p class="text">Đơn vị</p>
-                    <base-combobox
-                      @setValueInCombobox="setValueInCombobox"
-                      :department="department"
-                      :isShowDialog="isShowDialog"
-                    />
-                  </div>
-                </div>
-                <div class="m-col-6">
-                  <div class="m-row">
-                    <div class="m-col-7 m-padding-left-8">
-                      <div class="input-wrapper">
-                        <p class="text">Số CMND</p>
-                        <input
-                          type="text"
-                          class="t-input"
-                          placeholder="Nhập số CMND"
-                          fieldname="PersonalTaxCode"
-                          v-model="employee.PersonalTaxCode"
-                        />
-                      </div>
-                    </div>
-                    <div class="m-col-5 m-padding-left-8">
-                      <div class="input-wrapper">
-                        <p class="text">Ngày cấp</p>
-                        <input
-                          type="date"
-                          class="t-input"
-                          placeholder="Nhập ngày cấp"
-                          fieldname="CreatedDate"
-                          v-model="employee.CreatedDate"
-                        />
-                      </div>
+                <div class="m-row m-margin-top-16">
+                  <div class="m-col-6 m-padding-right-8">
+                    <div class="t-row">
+                      <p class="text">Đơn vị</p>
+                      <base-combobox
+                        @setValueInCombobox="setValueInCombobox"
+                        :department="department"
+                        :isShowDialog="isShowDialog"
+                        :isDepartmentEmpty="isDepartmentEmpty"
+                      />
                     </div>
                   </div>
-                </div>
-              </div>
-              <div class="m-row m-margin-top-16">
-                <div class="m-col-6 m-padding-right-8">
-                  <div class="input-wrapper">
-                    <p class="text">Chức danh</p>
-                    <input
-                      type="text"
-                      class="t-input"
-                      placeholder="Nhập chức danh"
-                      fieldname="EmployeePosition"
-                      v-model="employee.EmployeePosition"
-                    />
+                  <div class="m-col-6">
+                    <div class="m-row">
+                      <div class="m-col-7 m-padding-left-8">
+                        <div class="input-wrapper">
+                          <p class="text">Số CMND</p>
+                          <input
+                            type="text"
+                            class="t-input"
+                            placeholder="Nhập số CMND"
+                            fieldname="PersonalTaxCode"
+                            v-model="employee.PersonalTaxCode"
+                          />
+                        </div>
+                      </div>
+                      <div class="m-col-5 m-padding-left-8">
+                        <div class="input-wrapper">
+                          <p class="text">Ngày cấp</p>
+                          <input
+                            type="date"
+                            class="t-input"
+                            placeholder="DD/MM/YYYY"
+                            fieldname="CreatedDate"
+                            v-model="employee.CreatedDate"
+                          />
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
-                <div class="m-col-6 m-padding-left-8">
-                  <div class="input-wrapper">
-                    <p class="text">Nơi cấp</p>
-                    <input
-                      type="text"
-                      class="t-input"
-                      placeholder="Nhập nơi cấp"
-                      fieldname="IdentityPlace"
-                      v-model="employee.IdentityPlace"
-                    />
+                <div class="m-row m-margin-top-16">
+                  <div class="m-col-6 m-padding-right-8">
+                    <div class="input-wrapper">
+                      <p class="text">Chức danh</p>
+                      <input
+                        type="text"
+                        class="t-input"
+                        placeholder="Nhập chức danh"
+                        fieldname="EmployeePosition"
+                        v-model="employee.EmployeePosition"
+                      />
+                    </div>
+                  </div>
+                  <div class="m-col-6 m-padding-left-8">
+                    <div class="input-wrapper">
+                      <p class="text">Nơi cấp</p>
+                      <input
+                        type="text"
+                        class="t-input"
+                        placeholder="Nhập nơi cấp"
+                        fieldname="IdentityPlace"
+                        v-model="employee.IdentityPlace"
+                      />
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div class="m-row m-margin-top-16">
-                <div class="m-col-12">
-                  <div class="input-wrapper">
-                    <p class="text">Địa chỉ</p>
-                    <input
-                      type="text"
-                      class="t-input"
-                      placeholder="Nhập địa chỉ"
-                      fieldname="Address"
-                      v-model="employee.Address"
-                    />
+                <div class="m-row m-margin-top-16">
+                  <div class="m-col-12">
+                    <div class="input-wrapper">
+                      <p class="text">Địa chỉ</p>
+                      <input
+                        type="text"
+                        class="t-input"
+                        placeholder="Nhập địa chỉ"
+                        fieldname="Address"
+                        v-model="employee.Address"
+                      />
+                    </div>
                   </div>
                 </div>
-              </div>
 
-              <div class="m-row m-margin-top-16">
-                <div class="m-col-3 m-padding-right-8">
-                  <div class="input-wrapper">
-                    <p class="text">Di động</p>
-                    <input
-                      type="text"
-                      class="t-input"
-                      placeholder="Nhập SĐT di động"
-                      fieldname="PhoneNumber"
-                      v-model="employee.PhoneNumber"
-                    />
+                <div class="m-row m-margin-top-16">
+                  <div class="m-col-3 m-padding-right-8">
+                    <div class="input-wrapper">
+                      <p class="text">Di động</p>
+                      <input
+                        type="text"
+                        class="t-input"
+                        placeholder="Nhập SĐT di động"
+                        fieldname="PhoneNumber"
+                        v-model="employee.PhoneNumber"
+                      />
+                    </div>
+                  </div>
+                  <div class="m-col-3 m-padding-right-8">
+                    <div class="input-wrapper">
+                      <p class="text">Điện thoại cố định</p>
+                      <input
+                        type="text"
+                        class="t-input"
+                        placeholder="Nhập SĐT cố định"
+                        fieldname="TelephoneNumber"
+                        v-model="employee.TelephoneNumber"
+                      />
+                    </div>
+                  </div>
+                  <div class="m-col-3 m-padding-right-8">
+                    <div class="input-wrapper">
+                      <p class="text">Email</p>
+                      <input
+                        type="text"
+                        class="t-input"
+                        placeholder="Nhập email"
+                        fieldname="Email"
+                        v-model="employee.Email"
+                      />
+                    </div>
                   </div>
                 </div>
-                <div class="m-col-3 m-padding-right-8">
-                  <div class="input-wrapper">
-                    <p class="text">Điện thoại cố định</p>
-                    <input
-                      type="text"
-                      class="t-input"
-                      placeholder="Nhập SĐT cố định"
-                      fieldname="TelephoneNumber"
-                      v-model="employee.TelephoneNumber"
-                    />
+                <div class="m-row m-margin-top-16">
+                  <div class="m-col-3 m-padding-right-8">
+                    <div class="input-wrapper">
+                      <p class="text">Tài khoản ngân hàng</p>
+                      <input
+                        type="text"
+                        class="t-input"
+                        placeholder="Nhập số tài khoản ngân hàng"
+                        fieldname="BankAccountNumber"
+                        v-model="employee.BankAccountNumber"
+                      />
+                    </div>
                   </div>
-                </div>
-                <div class="m-col-3 m-padding-right-8">
-                  <div class="input-wrapper">
-                    <p class="text">Email</p>
-                    <input
-                      type="text"
-                      class="t-input"
-                      placeholder="Nhập email"
-                      fieldname="Email"
-                      v-model="employee.Email"
-                    />
+                  <div class="m-col-3 m-padding-right-8">
+                    <div class="input-wrapper">
+                      <p class="text">Tên ngân hàng</p>
+                      <input
+                        type="text"
+                        class="t-input"
+                        placeholder="Nhập tên ngân hàng"
+                        fieldname="BankName"
+                        v-model="employee.BankName"
+                      />
+                    </div>
+                  </div>
+                  <div class="m-col-3 m-padding-right-8">
+                    <div class="input-wrapper">
+                      <p class="text">Chi nhánh</p>
+                      <input
+                        type="text"
+                        class="t-input"
+                        placeholder="Nhập chi nhánh"
+                        fieldname="BankBranchName"
+                        v-model="employee.BankBranchName"
+                      />
+                    </div>
                   </div>
                 </div>
               </div>
-              <div class="m-row m-margin-top-16">
-                <div class="m-col-3 m-padding-right-8">
-                  <div class="input-wrapper">
-                    <p class="text">Tài khoản ngân hàng</p>
-                    <input
-                      type="text"
-                      class="t-input"
-                      placeholder="Nhập số tài khoản ngân hàng"
-                      fieldname="BankAccountNumber"
-                      v-model="employee.BankAccountNumber"
-                    />
-                  </div>
-                </div>
-                <div class="m-col-3 m-padding-right-8">
-                  <div class="input-wrapper">
-                    <p class="text">Tên ngân hàng</p>
-                    <input
-                      type="text"
-                      class="t-input"
-                      placeholder="Nhập tên ngân hàng"
-                      fieldname="BankName"
-                      v-model="employee.BankName"
-                    />
-                  </div>
-                </div>
-                <div class="m-col-3 m-padding-right-8">
-                  <div class="input-wrapper">
-                    <p class="text">Chi nhánh</p>
-                    <input
-                      type="text"
-                      class="t-input"
-                      placeholder="Nhập chi nhánh"
-                      fieldname="BankBranchName"
-                      v-model="employee.BankBranchName"
-                    />
-                  </div>
+              <div class="pop-up-footer">
+                <button
+                  id="btnCancel"
+                  @click="btnCancelEmployee"
+                  class="t-btn btn-cancel"
+                >
+                  Không
+                </button>
+                <div class="pop-up-btns">
+                  <button
+                    id="saveEmployee"
+                    class="t-btn"
+                    @click="saveEmployeeOnClick"
+                  >
+                    Cất
+                  </button>
+                  <button
+                    id="saveAddEmployee"
+                    class="t-btn t-btn-add"
+                    @click="saveAddEmployeeOnClick"
+                  >
+                    Cất và Thêm
+                  </button>
                 </div>
               </div>
             </div>
-            <div class="pop-up-footer">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div :class="{ isHideConfirmCancel: isHideConfirmCancel }">
+      <div class="m-dialog">
+        <div class="pop-up">
+          <div class="pop-up-content">
+            <div class="pop-up-icon">
+              <div class="icon-question"></div>
+            </div>
+            <div class="pop-up-text">
+              Dữ liệu đã bị thay đổi bạn có muốn cất không?
+            </div>
+          </div>
+          <div class="pop-up-footer">
+            <button
+              id="btnCancelPopUpDel"
+              class="t-btn btn-cancel"
+              @click="btnCancelOnClick"
+            >
+              Hủy
+            </button>
+            <div class="btn-wrapper-right">
               <button
-                id="btnCancel"
-                @click="btnCancelEmployee"
+                id="btnNotConfirm"
                 class="t-btn btn-cancel"
+                @click="btnNotConFirmOnClick"
               >
-                Không
+                không
               </button>
-              <div class="pop-up-btns">
-                <button
-                  id="saveEmployee"
-                  class="t-btn"
-                  @click="saveEmployeeOnClick"
-                >
-                  Cất
-                </button>
-                <button
-                  id="saveAddEmployee"
-                  class="t-btn t-btn-add"
-                  @click="saveAddEmployeeOnClick"
-                >
-                  Cất và Thêm
-                </button>
-              </div>
+              <button
+                id="btnDelEmployee"
+                class="t-btn t-btn-add"
+                @click="btnConFirmOnClick"
+              >
+                có
+              </button>
             </div>
           </div>
         </div>
@@ -324,11 +372,53 @@ export default {
     setShowDialogValidate: Function,
   },
   methods: {
-    btnCancelEmployee: function () {
-      this.$emit("showDialogAdd", false);
+    /**
+     * Hủy giữ lại form chi tiết
+     * Author: NVTAM 29/12/2021
+     */
+
+    btnCancelOnClick() {
+      this.isHideConfirmCancel = true;
     },
+    /**
+     * Hủy form thông tin
+     * Author: NVTAM 29/12/2021
+     */
+
+    btnCancelEmployee: function () {
+      //Hiển thị form xác nhận đóng
+      this.isHideConfirmCancel = false;
+    },
+    /**
+     * Hủy form thông tin
+     * Author: NVTAM 29/12/2021
+     */
+    btnNotConFirmOnClick() {
+      //Ẩn  form xác nhận đóng
+      this.isHideConfirmCancel = true;
+      this.$emit("showDialogAdd", false);
+      //reset tất cả validate trong input
+      this.resetValidate();
+    },
+    /**
+     * reset tất cả validate trong input
+     * Author: NVTAM 29/12/2021
+     */
+    resetValidate() {
+      this.isFullNameEmpty = false;
+      this.isDepartmentEmpty = false;
+    },
+
     showFocus() {
       this.$refs.isFocus.focus();
+    },
+    /**
+     * Xác nhận cất dữ liệu
+     */
+    btnConFirmOnClick() {
+      this.saveEmployeeOnClick();
+      //Ẩn  form xác nhận đóng
+      this.isHideConfirmCancel = true;
     },
     formatDateVModel(value) {
       //format date
@@ -344,25 +434,39 @@ export default {
       let years = dateValue.getFullYear();
       return `${years}-${month}-${date}`;
     },
+    /**
+     * save thông tin nhân viên onclick
+     * CreateBy: NVTAM(29/12/2021)
+     */
     saveEmployeeOnClick() {
+      //validate dữ liệu
+      if (!this.employee.EmployeeName) {
+        this.isFullNameEmpty = true;
+      } else {
+        this.isFullNameEmpty = false;
+      }
+      if (!this.employee.DepartmentId) {
+        this.isDepartmentEmpty = true;
+      } else {
+        this.isDepartmentEmpty = false;
+      }
       let me = this;
       //gọi Api thêm mới nhân viên
       if (this.employeeId == null) {
         axios
           .post("http://amis.manhnv.net/api/v1/Employees", me.employee)
           .then(function (response) {
-            // handle success
-            me.btnCancelEmployee();
+            // Ẩn form nhập thông tin nhân viên
+            me.$emit("showDialogAdd", false);
             //load lại trang web
             me.$emit("loadData");
+            // reset lại validate
+            me.resetValidate();
             console.log(response);
           })
           .catch(function (error) {
             // handle error
-
-            me.validate.value = false;
-            me.validate.text = error.response.data.userMsg;
-            me.$emit("setShowDialogValidate", me.validate);
+            me.setValidateError(error);
           });
       } else {
         axios
@@ -370,19 +474,18 @@ export default {
             `http://amis.manhnv.net/api/v1/Employees/${me.employeeId}`,
             me.employee
           )
-          .then(function (response) {
+          .then(function () {
             // handle success
             //thoát form
-            me.btnCancelEmployee();
+            me.$emit("showDialogAdd", false);
             //load lại dữ liệu
             me.$emit("loadData");
-            console.log(response);
+            // reset lại validate
+            me.resetValidate();
           })
           .catch(function (error) {
             // handle error
-            me.validate.value = false;
-            me.validate.text = error.response.data.userMsg;
-            me.$emit("setShowDialogValidate", me.validate);
+            me.setValidateError(error);
           });
       }
     },
@@ -398,7 +501,6 @@ export default {
           me.employee = {};
           me.employee.EmployeeCode = response.data;
           //Focus vào ô mã nhân viên
-          me.showFocus();
           //Hiện form thông tin nhân viên
           me.$emit("showDialogAdd", true);
         })
@@ -418,6 +520,17 @@ export default {
         //gán thông tin id của  department được chọn vào employee
         this.employee.DepartmentId = this.department.value;
       }
+    },
+    /**
+     * Bắt lỗi validate
+     *  Author:NVTam (26/12/2021)
+     */
+
+    setValidateError(error) {
+      this.validate.value = false;
+      this.validate.text = error.response.data.userMsg;
+      this.validate.statusCode = error.request.status;
+      this.$emit("setShowDialogValidate", this.validate);
     },
   },
   watch: {
@@ -448,6 +561,8 @@ export default {
             .then(function (response) {
               // handle success
               me.employee = response.data;
+              //focus vào ô mã nhân viên
+              me.showFocus();
               //format date to render input;
               me.employee.DateOfBirth = me.formatDateVModel(
                 response.data.DateOfBirth
@@ -473,7 +588,11 @@ export default {
       validate: {
         value: false,
         text: "",
+        statusCode: null,
       },
+      isFullNameEmpty: false,
+      isDepartmentEmpty: false,
+      isHideConfirmCancel: true,
     };
   },
 };

@@ -130,6 +130,25 @@
 .isShowDialogValidate {
   display: none !important;
 }
+#showDialogEmpty {
+  display: none;
+}
+#showDialogEmpty i {
+  color: #ff7777;
+}
+.isShowDialogEmpty {
+  display: block !important;
+}
+.pop-up .icon-question {
+  width: 48px;
+  height: 48px;
+  background: url("../../assets/img/Sprites.64af8f61.svg") no-repeat;
+  background-position: -826px -456px;
+}
+
+.isHideConfirmCancel {
+  display: none;
+}
 
 @keyframes spin {
   0% {

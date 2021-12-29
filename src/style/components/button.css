@@ -12,7 +12,9 @@
   font-weight: bold;
   text-transform: inherit;
 }
-
+.t-btn:hover {
+  background-color: #0000001f;
+}
 .t-btn.t-btn-add {
   color: #ffff !important;
   border: none;
@@ -56,4 +58,11 @@
 #cbxPageSize .t-combobox-btn.active-up {
   transform: rotate(180deg);
   transition: transform 0.15s linear;
+}
+.btn-wrapper-right {
+  display: flex;
+}
+
+.btn-wrapper-right #btnNotConfirm {
+  margin-right: 8px;
 }

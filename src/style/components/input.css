@@ -106,3 +106,10 @@ input[type="radio"]:checked {
 .v-text-field.v-text-field--solo .v-input__control {
   min-height: 31px;
 }
+input[type="date"] {
+  font-family: "Noto-sans-italic";
+}
+
+.isFullNameEmpty {
+  border: 1px solid red;
+}

@@ -164,13 +164,14 @@
     </div>
     <!-- -- list menu xóa-- -->
     <div id="listOption" class="t-row-list" v-bind:style="styleListOption">
-      <div class="t-row-item">Nhân bản</div>
+      <div class="t-row-item" @click="replicationOnClick">Nhân bản</div>
       <div id="showPopUpDel" class="t-row-item" @click="showPopupDel">Xóa</div>
       <div class="t-row-item">Ngừng sử dụng</div>
     </div>
 
     <employee-detail
       :isShowDialogValidate="isShowDialogValidate"
+      :isShowDialogEmpty="isShowDialogEmpty"
       @setShowDialogValidate="setShowDialogValidate"
       :isShowDialog="isShowDialog"
       @showDialogAdd="showDialogAdd"
@@ -213,7 +214,7 @@
       </div>
     </div>
     <!-- pop up xóa nhân viên -->
-    <!-- po up validate -->
+    <!-- po up validate MÃ nhân viên -->
     <div
       class="m-dialog"
       :class="{ isShowDialogValidate: isShowDialogValidate }"
@@ -235,6 +236,28 @@
       </div>
     </div>
     <!-- po up validate -->
+    <!-- po up validate Để trống tên và ngày phòng ban -->
+    <div id="showDialogEmpty" :class="{ isShowDialogEmpty: isShowDialogEmpty }">
+      <div class="m-dialog">
+        <div class="pop-up">
+          <div class="pop-up-content">
+            <div class="pop-up-icon">
+              <i class="fas fa-exclamation-circle"></i>
+            </div>
+            <div class="pop-up-text">
+              {{ textError }}
+            </div>
+          </div>
+          <div class="pop-up-footer p-flex-center">
+            <button class="t-btn t-btn-add" @click="hidePopupValidate">
+              Đóng
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- po up validate -->
+    <base-loading :overlay="overlay" />
   </div>
 </template>
 <script>
@@ -243,6 +266,7 @@ import axios from "axios";
 import CommonJS from "../../script/base/Common.js";
 import BaseSelect from "../../components/base/BaseSelect.vue";
 import BasePagination from "../../components/base/BasePagination.vue";
+import BaseLoading from "../../components/base/BaseLoading.vue";
 export default {
   created() {
     /**
@@ -271,25 +295,44 @@ export default {
     EmployeeDetail,
     BaseSelect,
     BasePagination,
+    BaseLoading,
   },
   methods: {
+    /**
+     * Nhân bản bản ghi
+     * author: NVTAM (29/12/2021)
+     */
+    replicationOnClick() {
+      this.isShowDialog = true;
+    },
     hidePopupValidate() {
       this.isShowDialogValidate = true;
+      this.isShowDialogEmpty = false;
     },
     showDialogAdd(value) {
+      //reset employee id
+      this.employeeId = null;
       this.isShowDialog = value;
       //Biến check xem có nhấn vào nút add không
       this.isEmployeeAdd = value;
     },
-    setShowDialogValidate({ value, text }) {
-      console.log(value, text);
+    setShowDialogValidate({ value, text, statusCode }) {
       this.isShowDialogValidate = value;
       this.textError = text;
+      if (statusCode == 400) {
+        //Hiên from lỗi
+        this.isShowDialogEmpty = true;
+      }
+      if (statusCode == 500) {
+        this.isShowDialogValidate = false;
+      }
     },
+
     loadData() {
       let me = this;
       let urlApi = `http://amis.manhnv.net/api/v1/Employees/filter?pageSize=${this.pageSize}&pageNumber=${this.currPage}&employeeFilter=${this.textSearch}`;
-
+      //hiển thị overlay
+      this.overlay = true;
       axios
         .get(urlApi)
         .then(function (response) {
@@ -298,6 +341,11 @@ export default {
           me.employees = response.data.Data;
           me.totalRecord = response.data.TotalRecord;
           me.totalPage = response.data.TotalPage;
+          //reset lại employeeID thành null
+          me.employeeId = null;
+          //ẩn overlay
+
+          me.overlay = false;
         })
         .catch(function (error) {
           // handle error
@@ -394,6 +442,8 @@ export default {
       currPage: 1,
       isShowDialogValidate: true,
       textError: "",
+      isShowDialogEmpty: false,
+      overlay: false,
     };
   },
 };
