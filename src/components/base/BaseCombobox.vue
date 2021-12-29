@@ -1,5 +1,6 @@
 <template>
   <v-combobox
+    :class="{ isDepartmentEmpty: isDepartmentEmpty }"
     v-model="select"
     :items="items"
     solo
@@ -13,6 +14,7 @@ export default {
     setValueInCombobox: Function,
     department: Object,
     isShowDialog: Boolean,
+    isDepartmentEmpty: Boolean,
   },
   watch: {
     //kiểm tra giá trị ẩn hiện dialog
