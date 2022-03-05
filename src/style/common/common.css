@@ -10,7 +10,24 @@
   --color-content: #f4f5f8;
   --btn-hover: #e0e0e0;
 }
-
+.min-width-174 {
+  min-width: 174px !important;
+}
+.min-width-200 {
+  min-width: 200px !important;
+}
+.min-width-250 {
+  min-width: 250px !important;
+}
+.min-width-120 {
+  min-width: 120px !important;
+}
+.min-width-114 {
+  min-width: 114px !important;
+}
+.color-red {
+  color: red;
+}
 .p-flex-end {
   justify-content: flex-end !important;
 }

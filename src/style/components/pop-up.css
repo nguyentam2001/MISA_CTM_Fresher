@@ -28,16 +28,16 @@
 }
 
 .pop-up {
-  padding: 32px;
+  padding: 28px;
   background-color: var(--white-color);
-  border: 1px solid #ccc;
+  border: 1px solid #babec5;
   box-sizing: border-box;
   width: 442px;
   border-radius: 4px;
 }
 
 .pop-up .pop-up-content {
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px solid #babec5;
   display: flex;
   align-items: center;
   padding-bottom: 32px;
@@ -76,14 +76,18 @@
   position: absolute;
   top: 0;
   right: 0;
+  padding: 12px;
 }
 
 .pop-up-form .pop-up-header {
   display: flex;
   align-items: center;
+  padding-bottom: 20px;
 }
 .pop-up-form .pop-up-title {
-  font-size: 28px;
+  font-size: 24px;
+  color: #111;
+  font-weight: 700;
   margin-top: 0;
   margin-bottom: 0;
 }
@@ -95,12 +99,12 @@
 .pop-up-form .pop-up-check {
   width: 20px;
   height: 20px;
-  border: 1px solid #ccc;
   border-radius: 4px;
   margin-left: 8px;
 }
 .pop-up-form .pop-up-checks p {
   margin-left: 10px;
+  margin-bottom: 0px;
 }
 
 .pop-up-form .pop-up-content {
@@ -133,10 +137,16 @@
 #showDialogEmpty {
   display: none;
 }
+#ShowDelSelected {
+  display: none;
+}
 #showDialogEmpty i {
   color: #ff7777;
 }
 .isShowDialogEmpty {
+  display: block !important;
+}
+.isShowDelSelected {
   display: block !important;
 }
 .pop-up .icon-question {
@@ -149,7 +159,40 @@
 .isHideConfirmCancel {
   display: none;
 }
+.pop-up-icon .warning-icon {
+  width: 48px;
+  height: 48px;
+  min-width: 48px;
+  min-height: 48px;
+  background: url(../../assets/img/Sprites.64af8f61.svg) no-repeat;
+  cursor: pointer;
+  background-position: -592px -456px;
+}
 
+.icon-empty {
+  width: 48px;
+  height: 48px;
+  min-width: 48px;
+  min-height: 48px;
+  background: url(../../assets/img/Sprites.64af8f61.svg) no-repeat;
+  background-position: -24px -954px;
+  cursor: pointer;
+}
+.popup-del-selected {
+  background-color: var(--white-color);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  padding: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+  width: 104px;
+  position: fixed;
+  border: 1px solid #ccc;
+  display: block;
+  z-index: 2;
+  top: 0;
+  left: 0;
+}
 @keyframes spin {
   0% {
     transform: rotate(0deg);

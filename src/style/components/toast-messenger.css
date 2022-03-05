@@ -43,3 +43,15 @@
   cursor: pointer;
   background-position: -146px -146px;
 }
+
+.v-snack__wrapper {
+  max-width: 672px;
+  min-height: 48px;
+  min-width: 255px;
+  color: black;
+}
+.snackbar-flex {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}

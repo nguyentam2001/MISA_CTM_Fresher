@@ -19,10 +19,10 @@ table.t-table thead tr th {
   z-index: 1;
   border-bottom: none;
   border-left: none;
-  border-right: 1px solid #ccc;
+  border-right: 1px solid #c7c7c7;
   height: 36px;
   border-top: none;
-  padding: 8px;
+  padding: 10px;
   background-color: #eceef1;
 }
 
@@ -52,7 +52,7 @@ table.t-table thead tr th:nth-child(2) {
 }
 table.t-table thead tr th:nth-child(3) {
   position: sticky;
-  left: 71px;
+  left: 70px;
   z-index: 2;
 }
 table.t-table thead tr th:last-child {
@@ -67,10 +67,10 @@ table.t-table thead tr th:last-child {
   border: none;
 }
 table.t-table thead tr th:nth-child(13) {
-  right: 17px;
+  right: 16px;
   z-index: 2;
   border-right: none;
-  border-left: 1px solid #ccc;
+  border-left: 1px solid #c7c7c7;
   position: sticky;
 }
 table.t-table thead tr th:nth-child(12) {
@@ -84,12 +84,12 @@ table.t-table thead tr th .t-table-checks-wrapper {
 
 table.t-table tbody tr td {
   font-size: 13px;
-  padding: 8px;
+  padding: 10px;
   border-right: none;
   border-top: none;
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px solid #c7c7c7;
   border-left: none;
-  border-right: 1px solid #ccc;
+  border-right: 1px dotted #c7c7c7;
   background-color: #fff;
 }
 
@@ -120,15 +120,15 @@ table.t-table tbody tr td:nth-child(2) {
 }
 table.t-table tbody tr td:nth-child(3) {
   position: sticky;
-  left: 71px;
+  left: 70px;
   z-index: 1;
 }
 
 table.t-table tbody tr td:nth-child(13) {
-  right: 17px;
+  right: 16px;
   z-index: 1;
   border-right: none;
-  border-left: 1px solid #ccc;
+  border-left: 1px dotted #c7c7c7;
   position: sticky;
 }
 table.t-table tbody tr td:nth-child(12) {
@@ -159,7 +159,7 @@ table.t-table .fix {
 }
 
 table.t-table tbody tr td:last-child {
-  border-right: 1px solid #ccc;
+  border-right: 1px solid #c7c7c7;
 }
 
 .t-table .t-table-check-wrapper {
@@ -222,7 +222,7 @@ table.t-table tbody tr td:last-child {
 }
 .t-row-list {
   position: fixed;
-  border: 1px solid #ccc;
+  border: 1px solid #c7c7c7;
   width: 124px;
   margin-top: 8px;
   z-index: 4;
@@ -265,6 +265,7 @@ table.t-table tbody tr td:last-child {
   padding-left: 16px;
   padding-right: 8px;
   align-items: center;
+  justify-content: flex-end;
   display: flex;
 }
 .t-table-paging .t-table-paging-numbers-wrapper {
@@ -283,7 +284,7 @@ table.t-table tbody tr td:last-child {
 }
 
 .t-table-paging .t-table-paging-number.t-table-paging-active {
-  border: 1px solid #ccc;
+  border: 1px solid #c7c7c7;
 }
 .t-table-paging .t-table-paging-before {
   cursor: pointer;
@@ -312,6 +313,9 @@ table.t-table tbody tr {
 .t-table tbody tr:focus td:not(:nth-child(14), :first-child) {
   background-color: var(--hover-color);
 }
+.v-application a {
+  color: #000 !important;
+}
 
 .v-pagination__item {
   height: 24px;
@@ -330,5 +334,5 @@ table.t-table tbody tr {
 }
 
 .v-pagination__item--active {
-  border: 1px solid #ccc !important;
+  border: 1px solid #c7c7c7 !important;
 }

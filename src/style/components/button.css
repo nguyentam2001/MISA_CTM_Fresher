@@ -8,28 +8,31 @@
   cursor: pointer;
   display: block;
   min-width: 70px;
-  border: 1px solid #000;
+  border: 1px solid #babec5;
   font-weight: bold;
   text-transform: inherit;
+  outline: none;
 }
 .t-btn:hover {
   background-color: #0000001f;
 }
+
+.t-btn:focus {
+  border: 1px solid var(--primary-color);
+}
 .t-btn.t-btn-add {
   color: #ffff !important;
   border: none;
-  background-color: #2ca01c;
+  background-color: var(--primary-color);
 }
 
 .t-btn.t-btn-add:hover {
-  background-color: #3dd429 !important;
+  background-color: var(--active-color) !important;
 }
 
 .form-employee .btn-top-left {
   font-size: 24px;
 
-  padding: 8px;
-  margin-right: 6px;
   cursor: pointer;
   border: none;
   background-color: white;
@@ -65,4 +68,66 @@
 
 .btn-wrapper-right #btnNotConfirm {
   margin-right: 8px;
+}
+.btn-question-icon {
+  margin-right: 6px;
+  width: 24px;
+  height: 24px;
+  min-width: 24px;
+  min-height: 24px;
+  background: url(../../assets/img/Sprites.64af8f61.svg) no-repeat;
+  background-position: -89px -144px;
+  cursor: pointer;
+}
+
+.btn-times-icon {
+  width: 24px;
+  height: 24px;
+  min-width: 24px;
+  min-height: 24px;
+  background: url(../../assets/img/Sprites.64af8f61.svg) no-repeat;
+  background-position: -144px -144px;
+  cursor: pointer;
+}
+
+.btn-export-excel {
+  margin-left: 18px;
+  width: 24px;
+  height: 24px;
+  min-width: 24px;
+  min-height: 24px;
+  background: url(../../assets/img/Sprites.64af8f61.svg) no-repeat;
+  background-position: -704px -200px;
+  cursor: pointer;
+}
+.btn-export-excel:hover {
+  background-position: -704px -256px;
+}
+.btn-delete-selection {
+  height: 34px;
+  width: 180px;
+  border: 2px solid #3b3c3f;
+  padding: 0 16px;
+  border-radius: 30px;
+  color: #111;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  margin-left: 20px;
+  cursor: pointer;
+}
+
+.btn-delete-selection:hover {
+  background-color: #d2d3d6;
+}
+
+.btn-delete-selection .btn-select-icon {
+  margin-left: 10px;
+  width: 16px;
+  height: 16px;
+  min-width: 16px;
+  min-height: 16px;
+  background: url(../../assets/img/Sprites.64af8f61.svg) no-repeat;
+  background-position: -560px -359px;
+  cursor: pointer;
 }

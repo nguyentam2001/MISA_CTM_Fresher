@@ -46,7 +46,7 @@
   padding-right: 16px;
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: space-between;
 }
 .t-content-body-reload {
   margin-left: 16px;
@@ -89,5 +89,13 @@
 .t-table-paging {
   background-color: #ffffff;
 }
-.t-td-table-center {
+.t-options-left {
+}
+
+.t-options-right {
+  background-color: #ffffff;
+  position: sticky;
+  left: 0;
+  display: flex;
+  align-items: center;
 }

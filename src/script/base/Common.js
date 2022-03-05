@@ -17,6 +17,21 @@ class CommonJS {
       return `${dateCur}/${monthCur}/${yearCur}`;
     } else return "";
   }
+  /**
+   * Hàm giới tính
+   *  Author:Nguyễn Văn Tâm (25/12/2021)
+   */
+  static genderName(gender) {
+    if (gender == 0) {
+      return "Nữ";
+    } else if (gender == 1) {
+      return "Nam";
+    } else if (gender == 2) {
+      return "Khác";
+    } else {
+      return "";
+    }
+  }
 
   /**
    * Hàm format tiền tệ VND
